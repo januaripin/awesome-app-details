@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:awesome_app_details/details/data/models/photo_model.dart';
+import 'package:core/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class PhotoRemoteDataSource {
@@ -24,8 +25,7 @@ class PhotoRemoteDataSourceImpl extends PhotoRemoteDataSource {
       return PhotoModel.fromJson(jsonDecode(response.body));
     } else {
       print(photoId);
-      throw Exception(
-          jsonDecode(response.body)['error'] ?? 'Failed to fetch details');
+      throw ServerException(code: response.statusCode, message: response.body);
     }
   }
 }
