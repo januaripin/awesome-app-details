@@ -1,6 +1,7 @@
 import 'package:awesome_app_details/details/data/data_sources/photo_remote_data_source.dart';
 import 'package:awesome_app_details/details/domain/entities/photo.dart';
 import 'package:awesome_app_details/details/domain/repositories/photo_repository.dart';
+import 'package:core/exceptions.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class PhotoRepositoryImpl extends PhotoRepository {
@@ -16,8 +17,7 @@ class PhotoRepositoryImpl extends PhotoRepository {
   @override
   Future<Photo> fetchPhoto(int photoId) async {
     if (!(await _internetConnectionChecker.hasConnection)) {
-      return Future.error(
-          'No internet connection. Please check your connection internet!');
+      throw NoConnectionException();
     }
 
     return await _dataSource.fetchPhoto(photoId);
