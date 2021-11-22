@@ -2,6 +2,7 @@ import 'package:awesome_app_details/details/domain/entities/photo.dart';
 import 'package:awesome_app_details/details/domain/entities/photo_src.dart';
 import 'package:awesome_app_details/details/domain/repositories/photo_repository.dart';
 import 'package:awesome_app_details/details/domain/use_cases/fetch_photo.dart';
+import 'package:core/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -28,5 +29,12 @@ void main() {
 
     expect(result.id, photo.id);
     expect(result.id, photo.id);
+  });
+
+  test('should throw exception', () async {
+    when(() => mockRepository.fetchPhoto(1)).thenAnswer((_) async => throw NoConnectionException());
+
+    final useCase = FetchPhoto(mockRepository);
+    expect(useCase.call(1), throwsException);
   });
 }
