@@ -1,4 +1,3 @@
-
 import 'package:awesome_app_details/details/domain/entities/photo.dart';
 
 import 'photo_src_model.dart';
@@ -16,10 +15,10 @@ class PhotoModel extends Photo {
     PhotoSrcModel src = const PhotoSrcModel(),
     bool liked = false,
   }) : super(
-          id: 0,
-          width: 0,
-          height: 0,
-          photographerId: 0,
+          id: id,
+          width: width,
+          height: height,
+          photographerId: photographerId,
           url: url,
           photographer: photographer,
           photographerUrl: photographerUrl,
