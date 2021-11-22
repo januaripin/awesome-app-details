@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:awesome_app_details/details/presentation/pages/details_page.dart';
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(const AwesomeAppDetails());
 
@@ -12,7 +13,8 @@ class AwesomeAppDetails extends StatelessWidget {
     return MaterialApp(
       title: 'Awesome App Details',
       theme: Themes.light,
-      home: Container(),
+      debugShowCheckedModeBanner: false,
+      home: DetailsPage(photoId: 2014422),
     );
   }
 }
