@@ -153,7 +153,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: f17726787b1a21c310b4ca4e8037388d0a0f2f4c
+      resolved-ref: "983cbb5daacfe70776fc5b9399da060e885cef39"
       url: "https://github.com/januaripin/awesome-app-core.git"
     source: git
     version: "0.0.2"
@@ -185,6 +185,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
+  dartz:
+    dependency: "direct main"
+    description:
+      name: dartz
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.0"
   diff_match_patch:
     dependency: transitive
     description:
@@ -252,7 +259,7 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.3"
+    version: "3.2.0"
   flutter_driver:
     dependency: transitive
     description: flutter
@@ -440,7 +447,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.8"
+    version: "2.0.9"
   path_provider_ios:
     dependency: transitive
     description:
@@ -732,7 +739,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   xdg_directories:
     dependency: transitive
     description:
