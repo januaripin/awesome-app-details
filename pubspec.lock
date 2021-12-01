@@ -152,8 +152,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: master
-      resolved-ref: "0999de17cd9306fa899f551aff077918c2245330"
+      ref: dev
+      resolved-ref: "983cbb5daacfe70776fc5b9399da060e885cef39"
       url: "https://github.com/januaripin/awesome-app-core.git"
     source: git
     version: "0.0.2"
