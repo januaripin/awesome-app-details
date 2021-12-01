@@ -3,10 +3,10 @@ import 'package:equatable/equatable.dart';
 
 class Photo extends Equatable {
   const Photo({
-    required this.id,
-    required this.width,
-    required this.height,
-    required this.photographerId,
+    this.id = 0,
+    this.width = 0,
+    this.height = 0,
+    this.photographerId = 0,
     this.url,
     this.photographer,
     this.photographerUrl,

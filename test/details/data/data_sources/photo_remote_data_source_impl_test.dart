@@ -13,12 +13,14 @@ class MockClient extends Mock implements http.Client {}
 
 void main() {
   final mockClient = MockClient();
+  final dataSource = PhotoRemoteDataSourceImpl(mockClient);
 
   setUpAll(() {
     registerFallbackValue(Uri);
   });
 
-  test('fetch details photo from remote data source', () async {
+  test('should return PhotoModel when fetching photo details', () async {
+    // arrange
     when(() => mockClient.get(Uri.parse('https://api.pexels.com/v1/photos/1'),
         headers: any(named: 'headers'))).thenAnswer(
       (_) async => http.Response(
@@ -30,21 +32,32 @@ void main() {
       ),
     );
 
-    final dataSource = PhotoRemoteDataSourceImpl(mockClient);
-
+    // act
     final result = await dataSource.fetchPhoto(1);
 
+    // assert
+    verify(() => mockClient.get(
+      Uri.parse('https://api.pexels.com/v1/photos/1'),
+      headers: any(named: 'headers'),
+    ));
     expect(result, PhotoModel.fromJson(jsonDecode(fixture('photo.json'))));
   });
 
-  test('should throw exception', () async {
+  test('should throw exception when fetching photo details', () async {
+    // arrange
     when(() => mockClient.get(Uri.parse('https://api.pexels.com/v1/photos/1'),
         headers: any(named: 'headers'))).thenAnswer(
       (_) async => http.Response('Something went wrong', 400),
     );
 
-    final dataSource = PhotoRemoteDataSourceImpl(mockClient);
+    // act
+    final result = dataSource.fetchPhoto(1);
 
-    expect(dataSource.fetchPhoto(1), throwsException);
+    // assert
+    verify(() => mockClient.get(
+          Uri.parse('https://api.pexels.com/v1/photos/1'),
+          headers: any(named: 'headers'),
+        ));
+    expect(result, throwsException);
   });
 }

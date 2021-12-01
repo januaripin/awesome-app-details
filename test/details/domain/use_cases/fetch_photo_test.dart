@@ -1,8 +1,8 @@
 import 'package:awesome_app_details/details/domain/entities/photo.dart';
-import 'package:awesome_app_details/details/domain/entities/photo_src.dart';
 import 'package:awesome_app_details/details/domain/repositories/photo_repository.dart';
 import 'package:awesome_app_details/details/domain/use_cases/fetch_photo.dart';
-import 'package:core/exceptions.dart';
+import 'package:core/core.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -10,31 +10,44 @@ class MockPhotoRepository extends Mock implements PhotoRepository {}
 
 void main() {
   final mockRepository = MockPhotoRepository();
+  final useCase = FetchPhoto(mockRepository);
 
-  test('fetch photos use case', () async {
-    final useCase = FetchPhoto(mockRepository);
+  test('should return Right(Photo) when fetching photo details', () async {
+    // arrange
+    when(() => mockRepository.fetchPhoto(1))
+        .thenAnswer((_) async => Right(Photo()));
 
-    final photo = Photo(
-      id: 1,
-      width: 720,
-      height: 600,
-      photographerId: 1,
-      photographer: 'Photographer 1',
-      src: const PhotoSrc(),
-    );
-
-    when(() => mockRepository.fetchPhoto(1)).thenAnswer((_) async => photo);
-
+    // act
     final result = await useCase.call(1);
 
-    expect(result.id, photo.id);
-    expect(result.id, photo.id);
+    // assert
+    expect(result, Right(Photo()));
+    verify(() => mockRepository.fetchPhoto(1));
   });
 
-  test('should throw exception', () async {
-    when(() => mockRepository.fetchPhoto(1)).thenAnswer((_) async => throw NoConnectionException());
+  test('should return Right(Photo) when fetching photo details', () async {
+    // arrange
+    when(() => mockRepository.fetchPhoto(1))
+        .thenAnswer((_) async => Right(Photo()));
 
-    final useCase = FetchPhoto(mockRepository);
-    expect(useCase.call(1), throwsException);
+    // act
+    final result = await useCase.call(1);
+
+    // assert
+    expect(result, Right(Photo()));
+    verify(() => mockRepository.fetchPhoto(1));
+  });
+
+  test('should return Left(NoInternetFailure) when no internet connection', () async {
+    // arrange
+    when(() => mockRepository.fetchPhoto(1))
+        .thenAnswer((_) async => Left(NoInternetFailure()));
+
+    // act
+    final result = await useCase.call(1);
+
+    // assert
+    expect(result, Left(NoInternetFailure()));
+    verify(() => mockRepository.fetchPhoto(1));
   });
 }

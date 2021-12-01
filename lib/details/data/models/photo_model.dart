@@ -4,13 +4,13 @@ import 'photo_src_model.dart';
 
 class PhotoModel extends Photo {
   PhotoModel({
-    required int id,
-    required int width,
-    required int height,
+    int id = 0,
+    int width = 0,
+    int height = 0,
     String? url,
     String? photographer,
     String? photographerUrl,
-    required int photographerId,
+    int photographerId = 0,
     String? avgColor,
     PhotoSrcModel src = const PhotoSrcModel(),
     bool liked = false,
