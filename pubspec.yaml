@@ -27,7 +27,7 @@ dependencies:
   core:
     git:
       url: https://github.com/januaripin/awesome-app-core.git
-      ref: upgrade-flutter
+      ref: master
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
