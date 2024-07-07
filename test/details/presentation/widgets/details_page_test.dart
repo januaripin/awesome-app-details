@@ -1,15 +1,8 @@
-import 'package:awesome_app_details/details/domain/entities/photo.dart';
-import 'package:awesome_app_details/details/domain/entities/photo_src.dart';
 import 'package:awesome_app_details/details/presentation/blocs/photo_cubit.dart';
-import 'package:awesome_app_details/details/presentation/pages/details_page.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:network_image_mock/network_image_mock.dart';
 
-import '../../../widget_test.dart';
 
 class MockPhotoCubit extends MockBloc<PhotoCubit, PhotoState>
     implements PhotoCubit {}

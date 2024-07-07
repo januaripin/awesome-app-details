@@ -2,7 +2,6 @@ import 'package:awesome_app_details/details/data/data_sources/photo_remote_data_
 import 'package:awesome_app_details/details/data/models/photo_model.dart';
 import 'package:awesome_app_details/details/data/models/photo_src_model.dart';
 import 'package:awesome_app_details/details/data/repositories/photo_repository_impl.dart';
-import 'package:core/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mocktail/mocktail.dart';
